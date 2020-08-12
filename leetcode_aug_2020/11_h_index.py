@@ -15,3 +15,12 @@ class Solution:
                 break
                 
         return h_indx 
+
+
+"""
+Time Complexity = O(NlogN)
+Space Complexity = O(N)
+"""
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        return sum(val >= indx + 1 for indx, val in enumerate(sorted(citations, reverse = True)))
