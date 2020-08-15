@@ -19,3 +19,13 @@ class Solution:
                 out += val if not out % 2 else val - 1
 
         return out
+
+
+# Using Generator
+from collections import Counter
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        
+        val = sum(v & 1 for v in Counter(s).values())
+        return len(s) - val + bool(val)
