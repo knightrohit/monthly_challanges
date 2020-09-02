@@ -4,8 +4,6 @@ Time/Space complexity = O(1)
 # Approach using variables
 class Solution:
     def largestTimeFromDigits(self, A: List[int]) -> str:
-        
-        total = sum(A)
         time = ''
 
         for i, a in enumerate(A):
@@ -19,4 +17,19 @@ class Solution:
                     if hour < '24' and minute < '60':
                         time = max(time, f'{hour}:{minute}')
                         
+        return time
+
+
+# Using permutations
+from itertools import permutations
+
+class Solution:
+    def largestTimeFromDigits(self, A: List[int]) -> str:
+        time = ''
+        for a,b,c,d in permutations(A):
+            hour, minute = f'{a}{b}', f'{c}{d}'
+            
+            if hour < '24' and minute < '60':
+                time = max(time, f'{hour}:{minute}')
+                
         return time
