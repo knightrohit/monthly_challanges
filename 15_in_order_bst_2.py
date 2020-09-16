@@ -25,6 +25,30 @@ class Solution:
         return out[indx + 1] if indx + 1 <= len(out) - 1 else None
             
             
+
+# Second Approach
+"""
+Time Complexity = O(log N)
+Space Complexity = O(1)
+"""
+class Solution:
+    def inorderSuccessor(self, node: 'Node') -> 'Node':
+        
+        if not node:
+            return node
+        
+        # node has right child
+        if node.right:
+            node = node.right
+            while node.left:
+                node = node.left
+            return node
+        
+        # node has no right child
+        while node.parent and node.parent.right == node:
+            node = node.parent
+            
+        return node.parent
         
     
     
