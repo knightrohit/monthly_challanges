@@ -20,3 +20,30 @@ class Solution:
                         break
                     
         return operation
+
+
+#Approach - 2
+"""
+Time/Space Complexity = O(N)
+""" 
+from collections import Counter
+
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        
+        if len(nums) == 1:
+            return 0
+        
+        operation = 0
+        num_dict = Counter(nums)
+        
+        for no in nums:
+            if num_dict[k-no] > 0 and num_dict[no] > 0:
+                
+                if k - no == no and num_dict[no] < 2:
+                    continue                    
+                num_dict[k-no] -= 1
+                num_dict[no] -= 1                    
+                operation += 1
+
+        return operation
